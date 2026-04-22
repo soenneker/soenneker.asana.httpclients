@@ -1,20 +1,19 @@
 using Soenneker.Asana.HttpClients.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Asana.HttpClients.Tests;
 
-[Collection("Collection")]
-public sealed class AsanaOpenApiHttpClientTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class AsanaOpenApiHttpClientTests : HostedUnitTest
 {
     private readonly IAsanaOpenApiHttpClient _httpclient;
 
-    public AsanaOpenApiHttpClientTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public AsanaOpenApiHttpClientTests(Host host) : base(host)
     {
         _httpclient = Resolve<IAsanaOpenApiHttpClient>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
