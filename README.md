@@ -67,4 +67,4 @@ public sealed class AsanaTransport
 }
 ```
 
-`Get()` creates the named client on first use and returns it afterward. Configuration changes do not rebuild an existing client. Do not dispose the returned `HttpClient` per request; the singleton cache owns it, and disposing a scoped provider leaves it available.
+`Get()` creates the named client on first use and returns it afterward. Configuration changes do not rebuild an existing client. Do not dispose the returned `HttpClient` per request. Disposing the provider removes and disposes its named client from the shared cache.
