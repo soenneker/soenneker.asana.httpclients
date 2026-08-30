@@ -11,7 +11,7 @@ namespace Soenneker.Asana.HttpClients.Registrars;
 public static class AsanaOpenApiHttpClientRegistrar
 {
     /// <summary>
-    /// Adds <see cref="AsanaOpenApiHttpClient"/> as a singleton service. <para/>
+    /// Adds <see cref="IAsanaOpenApiHttpClient"/> as a singleton service backed by the singleton HTTP-client cache.
     /// </summary>
     public static IServiceCollection AddAsanaOpenApiHttpClientAsSingleton(this IServiceCollection services)
     {
@@ -22,7 +22,7 @@ public static class AsanaOpenApiHttpClientRegistrar
     }
 
     /// <summary>
-    /// Adds <see cref="AsanaOpenApiHttpClient"/> as a scoped service. <para/>
+    /// Adds <see cref="IAsanaOpenApiHttpClient"/> as a scoped service backed by the singleton HTTP-client cache.
     /// </summary>
     public static IServiceCollection AddAsanaOpenApiHttpClientAsScoped(this IServiceCollection services)
     {

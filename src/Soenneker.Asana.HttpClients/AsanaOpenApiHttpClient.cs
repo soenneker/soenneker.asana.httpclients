@@ -11,7 +11,6 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.Asana.HttpClients;
 
-///<inheritdoc cref="IAsanaOpenApiHttpClient"/>
 public sealed class AsanaOpenApiHttpClient : IAsanaOpenApiHttpClient
 {
     private readonly IHttpClientCache _httpClientCache;
@@ -45,20 +44,14 @@ public sealed class AsanaOpenApiHttpClient : IAsanaOpenApiHttpClient
         }, cancellationToken);
     }
 
-    /// <summary>
-    /// Releases resources used by the current instance.
-    /// </summary>
     public void Dispose()
     {
-        _httpClientCache.RemoveSync(nameof(AsanaOpenApiHttpClient));
+        // The singleton cache owns the named client. A scoped provider must not remove it.
     }
 
-    /// <summary>
-    /// Asynchronously releases resources used by the current instance.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public ValueTask DisposeAsync()
     {
-        return _httpClientCache.Remove(nameof(AsanaOpenApiHttpClient));
+        // Kept for API compatibility; the singleton cache owns the named client.
+        return ValueTask.CompletedTask;
     }
 }
