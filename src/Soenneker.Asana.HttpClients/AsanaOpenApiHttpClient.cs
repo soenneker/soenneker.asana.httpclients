@@ -11,6 +11,7 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.Asana.HttpClients;
 
+/// <inheritdoc cref="IAsanaOpenApiHttpClient" />
 public sealed class AsanaOpenApiHttpClient : IAsanaOpenApiHttpClient
 {
     private readonly IHttpClientCache _httpClientCache;
