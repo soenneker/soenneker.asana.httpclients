@@ -29,7 +29,7 @@ public sealed class AsanaOpenApiHttpClient : IAsanaOpenApiHttpClient
     {
         return _httpClientCache.Get(nameof(AsanaOpenApiHttpClient), (config: _config, baseUrl: _config["Asana:ClientBaseUrl"] ?? _prodBaseUrl), static state =>
         {
-            var apiKey = state.config.GetValueStrict<string>("Asana:ApiKey");
+            var apiKey = state.config.GetStringStrict("Asana:ApiKey");
             string authHeaderName = state.config["Asana:AuthHeaderName"] ?? "Authorization";
             string authHeaderValueTemplate = state.config["Asana:AuthHeaderValueTemplate"] ?? "Bearer {token}";
             string authHeaderValue = authHeaderValueTemplate.Replace("{token}", apiKey, StringComparison.Ordinal);
